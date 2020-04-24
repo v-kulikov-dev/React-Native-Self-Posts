@@ -1,24 +1,19 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { DATA } from "../data";
-import { Post } from "../components/Post";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
+import { PostList } from "../components/PostList";
 
 export const MainScreen = ({ navigation }) => {
   const openPostHandler = (post) => {
-    navigation.navigate("Post", { postId: post.id, date: post.date });
+    navigation.navigate("Post", {
+      postId: post.id,
+      date: post.date,
+      booked: post.booked,
+    });
   };
 
-  return (
-    <View stule={styles.wrapper}>
-      <FlatList
-        data={DATA}
-        keyExtractor={(post) => post.id.toString()}
-        renderItem={({ item }) => <Post post={item} onOpen={openPostHandler} />}
-      />
-    </View>
-  );
+  return <PostList data={DATA} onOpen={openPostHandler} />;
 };
 
 MainScreen.navigationOptions = {
@@ -32,15 +27,13 @@ MainScreen.navigationOptions = {
       />
     </HeaderButtons>
   ),
+  headerLeft: () => (
+    <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+      <Item
+        title="Toggle Drawer"
+        iconName="ios-menu"
+        onPress={() => console.log("press")}
+      />
+    </HeaderButtons>
+  ),
 };
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  wrapper: {
-    padding: 10,
-  },
-});
