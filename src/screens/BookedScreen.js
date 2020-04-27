@@ -18,15 +18,15 @@ export const BookedScreen = ({ navigation }) => {
   return <PostList data={data} onOpen={openPostHandler} />;
 };
 
-BookedScreen.navigationOptions = {
+BookedScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: "Favorite",
   headerLeft: () => (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
         title="Toggle Drawer"
         iconName="ios-menu"
-        onPress={() => console.log("press")}
+        onPress={() => navigation.toggleDrawer()}
       />
     </HeaderButtons>
   ),
-};
+});
