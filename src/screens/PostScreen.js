@@ -7,6 +7,7 @@ import {
   Button,
   ScrollView,
   Alert,
+  Dimensions,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { THEME } from "../theme";
@@ -60,6 +61,11 @@ export const PostScreen = ({ navigation }) => {
     );
   };
 
+  const editHandler = () => {
+    navigation.navigate("Edit");
+    console.log("edit");
+  };
+
   if (!post) {
     return null;
   }
@@ -70,15 +76,22 @@ export const PostScreen = ({ navigation }) => {
       <View style={styles.textWrap}>
         <Text style={styles.title}>{post.text}</Text>
       </View>
-      <Button
-        title="Remove"
-        color={THEME.DANGER_COLOR}
-        onPress={removeHandler}
-      />
+      <View style={styles.btnWrap}>
+        <View style={styles.button}>
+          <Button
+            title="Remove"
+            color={THEME.DANGER_COLOR}
+            onPress={removeHandler}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button title="Edit" color={THEME.MAIN_COLOR} onPress={editHandler} />
+        </View>
+      </View>
     </ScrollView>
   );
 };
-
+//Todo: Create notification for add to booked
 PostScreen.navigationOptions = ({ navigation }) => {
   const date = navigation.getParam("date");
   const booked = navigation.getParam("booked");
@@ -104,5 +117,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "open-regular",
+  },
+  btnWrap: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  button: {
+    width: Dimensions.get("window").width / 3,
   },
 });
