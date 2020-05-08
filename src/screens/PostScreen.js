@@ -8,6 +8,7 @@ import {
   ScrollView,
   Alert,
   Dimensions,
+  ImageBackground,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { THEME } from "../theme";
@@ -71,24 +72,33 @@ export const PostScreen = ({ navigation }) => {
   }
 
   return (
-    <ScrollView>
-      <Image source={{ uri: post.img }} style={styles.image} />
-      <View style={styles.textWrap}>
-        <Text style={styles.title}>{post.text}</Text>
-      </View>
-      <View style={styles.btnWrap}>
-        <View style={styles.button}>
-          <Button
-            title="Remove"
-            color={THEME.DANGER_COLOR}
-            onPress={removeHandler}
-          />
+    <ImageBackground
+      style={styles.backgroundImage}
+      source={require("../../assets/logo_for_aboutScreen.png")}
+    >
+      <ScrollView>
+        <Image source={{ uri: post.img }} style={styles.image} />
+        <View style={styles.textWrap}>
+          <Text style={styles.title}>{post.text}</Text>
         </View>
-        <View style={styles.button}>
-          <Button title="Edit" color={THEME.MAIN_COLOR} onPress={editHandler} />
+        <View style={styles.btnWrap}>
+          <View style={styles.button}>
+            <Button
+              title="Remove"
+              color={THEME.DANGER_COLOR}
+              onPress={removeHandler}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              title="Edit"
+              color={THEME.MAIN_COLOR}
+              onPress={editHandler}
+            />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 //Todo: Create notification for add to booked
@@ -124,5 +134,10 @@ const styles = StyleSheet.create({
   },
   button: {
     width: Dimensions.get("window").width / 3,
+  },
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
   },
 });

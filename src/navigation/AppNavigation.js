@@ -98,22 +98,25 @@ const MainNavigator = createDrawerNavigator(
         drawerLabel: "Main Screen",
       },
     },
-    About: {
-      screen: AboutNavigator,
-      navigationOptions: {
-        drawerLabel: "About App",
-      },
-    },
     Create: {
       screen: CreateNavigator,
       navigationOptions: {
         drawerLabel: "New Post",
       },
     },
+    About: {
+      screen: AboutNavigator,
+      navigationOptions: {
+        drawerLabel: "About App",
+      },
+    },
   },
   {
     contentOptions: {
       activeTintColor: THEME.MAIN_COLOR,
+      activeBackgroundColor: "#03d3fc",
+      inactiveBackgroundColor: "#d1ebf0",
+      itemStyle: { paddingVertical: 10 },
       labelStyle: {
         fontFamily: "open-bold",
       },

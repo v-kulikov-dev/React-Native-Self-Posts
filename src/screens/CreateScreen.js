@@ -8,6 +8,7 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
+  ImageBackground,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -37,27 +38,32 @@ export const CreateScreen = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.wrapper}>
-          <Text style={styles.title}>Create New Post</Text>
-          <TextInput
-            style={styles.textarea}
-            placeholder="Enter post text"
-            value={text}
-            onChangeText={setText}
-            multiline
-          />
-          <PhotoPicker onPick={photoPickHandler} />
-          <Button
-            title="Create Post"
-            color={THEME.MAIN_COLOR}
-            onPress={saveHandler}
-            disabled={!text}
-          />
-        </View>
-      </TouchableWithoutFeedback>
-    </ScrollView>
+    <ImageBackground
+      style={styles.image}
+      source={require("../../assets/logo_for_createScreen.png")}
+    >
+      <ScrollView>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={styles.wrapper}>
+            <Text style={styles.title}>Create New Post</Text>
+            <TextInput
+              style={styles.textarea}
+              placeholder="Enter post text"
+              value={text}
+              onChangeText={setText}
+              multiline
+            />
+            <PhotoPicker onPick={photoPickHandler} />
+            <Button
+              title="Create Post"
+              color={THEME.MAIN_COLOR}
+              onPress={saveHandler}
+              disabled={!text}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -84,6 +90,15 @@ const styles = StyleSheet.create({
     fontFamily: "open-regular",
     marginVertical: 10,
   },
+  textarea: {
+    borderWidth: 2,
+    borderColor: THEME.MAIN_COLOR,
+    borderRadius: 5,
+    marginBottom: 10,
+    height: 50,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
   style: {
     padding: 10,
     marginBottom: 10,
@@ -92,5 +107,10 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
     marginBottom: 10,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
   },
 });

@@ -1,16 +1,21 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ImageBackground } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 
 export const AboutScreen = () => {
   return (
-    <View style={styles.center}>
-      <Text>Note application with the ability to use images</Text>
-      <Text>
-        App version <Text style={styles.version}>1.0.0</Text>
-      </Text>
-    </View>
+    <ImageBackground
+      style={styles.image}
+      source={require("../../assets/logo_for_aboutScreen.png")}
+    >
+      <View style={styles.center}>
+        <Text>Note application with the ability to use images</Text>
+        <Text>
+          App version <Text style={styles.version}>1.0.0</Text>
+        </Text>
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -35,5 +40,10 @@ const styles = StyleSheet.create({
   },
   version: {
     fontFamily: "open-bold",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
   },
 });
